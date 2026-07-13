@@ -33,3 +33,4 @@ A full-stack todo application built with **Django**, **htmx**, and **Tailwind CS
 - [Tailwind CSS](https://tailwindcss.com/)
 - [django-tailwind](https://pypi.org/project/django-tailwind/)
 - [daisyUI](https://daisyui.com/)
+- [django-htmx](https://django-htmx.readthedocs.io/en/latest/)
