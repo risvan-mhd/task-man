@@ -8,6 +8,7 @@ A full-stack todo application built with **Django**, **htmx**, and **Tailwind CS
 - Django
 - htmx
 - Tailwind CSS
+- daisyUI
 
 
 ## Prerequisites
@@ -30,3 +31,5 @@ A full-stack todo application built with **Django**, **htmx**, and **Tailwind CS
 - [Django](https://www.djangoproject.com/)
 - [htmx](https://htmx.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [django-tailwind](https://pypi.org/project/django-tailwind/)
+- [daisyUI](https://daisyui.com/)

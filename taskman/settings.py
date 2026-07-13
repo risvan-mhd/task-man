@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tasks",
+    "tailwind",
+    "theme",
 ]
+
+if DEBUG:
+    # Add django_browser_reload only in DEBUG mode
+    INSTALLED_APPS += ["django_browser_reload"]
+
+TAILWIND_APP_NAME = "theme"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -51,6 +59,13 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
+if DEBUG:
+    # Add django_browser_reload middleware only in DEBUG mode
+    MIDDLEWARE += [
+        "django_browser_reload.middleware.BrowserReloadMiddleware",
+    ]
 
 ROOT_URLCONF = "taskman.urls"
 
