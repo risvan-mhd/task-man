@@ -9,3 +9,8 @@ dependencies = [
     "django-htmx>=1.28.0",
     "django-tailwind[cookiecutter,honcho,reload]>=4.5.0",
 ]
+
+[dependency-groups]
+dev = [
+    "django-stubs>=6.0.7",
+]
