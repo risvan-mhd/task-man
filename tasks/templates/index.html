@@ -1,26 +1,32 @@
 {% extends 'base.html' %}
+
+{% partialdef task-list %}
+{% for task in tasks %}
+<div class="bg-base-200 hover:bg-base-300 flex select-none">
+	<label class="label cursor-pointer flex-grow p-4">
+		<input type="checkbox" class="checkbox" {% if task.completed %}checked{% endif %}>
+		{{ task.name }}
+	</label>
+	<button class="m-4 btn btn-error">Delete</button>
+</div>
+{% empty %}
+<div>
+	<p class="text-center opacity-60">No Tasks Yet</p>
+</div>
+{% endfor %}
+{% endpartialdef %}
+
 {% block content %}
 
 <div class="m-8">
-	<div class="flex gap-2">
-		<input type="text" placeholder="Task" class="input flex-1">
+	<form class="flex gap-2" hx-post="{% url 'task-create' %}" hx-target="#task-list"
+		hx-on:clear-task-form="this.reset()">
+		<input type="text" name="task_name" placeholder="Task" class="input flex-1" autocomplete="off">
 		<button class="btn btn-primary px-16">Add</button>
-	</div>
+	</form>
 
-	<div class="mt-8 flex flex-col gap-2 select-none">
-		{% for task in tasks %}
-		<div class="bg-base-200 hover:bg-base-300 flex">
-			<label class="label cursor-pointer flex-grow p-4">
-				<input type="checkbox" class="checkbox" {% if task.completed %}checked{% endif %}>
-				{{ task.name }}
-			</label>
-			<button class="m-4 btn btn-error">Delete</button>
-		</div>
-		{% empty %}
-		<div>
-			<p class="text-center opacity-60">No Tasks Yet</p>
-		</div>
-		{% endfor %}
+	<div class="mt-8 flex flex-col gap-2" id="task-list">
+		{% partial task-list %}
 	</div>
 </div>
 

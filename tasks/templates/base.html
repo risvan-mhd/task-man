@@ -1,18 +1,14 @@
-{% load static tailwind_tags %}
-{% load django_htmx %}
+{% load static tailwind_tags %} {% load django_htmx %}
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task Man</title>
+        {% tailwind_css %} {% htmx_script %}
+    </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Task Man</title>
-	{% tailwind_css %}
-	{% htmx_script %}
-</head>
-
-<body>
-	{% block content %} {% endblock content %}
-</body>
-
+    <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+        {% block content %} {% endblock content %}
+    </body>
 </html>
