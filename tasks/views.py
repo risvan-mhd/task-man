@@ -1,7 +1,7 @@
+from django.views.decorators.http import require_POST, require_http_methods
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.views.decorators.http import require_POST
 from django.core.handlers.wsgi import WSGIRequest
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from django_htmx.http import trigger_client_event
 
@@ -31,3 +31,14 @@ def task_create(request: WSGIRequest) -> HttpResponse:
 
     respose = render(request, "index.html#task-list", context)
     return trigger_client_event(respose, "clearTaskForm")
+
+
+@require_http_methods(["DELETE"])
+def task_delete(request: WSGIRequest, pk: int) -> HttpResponse:
+    get_object_or_404(Task, pk=pk).delete()
+    tasks = Task.objects.all()
+    context = {
+        "tasks": tasks,
+    }
+
+    return render(request, "index.html#task-list", context)

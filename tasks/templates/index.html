@@ -7,7 +7,7 @@
 		<input type="checkbox" class="checkbox" {% if task.completed %}checked{% endif %}>
 		{{ task.name }}
 	</label>
-	<button class="m-4 btn btn-error">Delete</button>
+	<button class="m-4 btn btn-error" hx-delete="{% url 'task-delete' task.id %}" hx-target="#task-list">Delete</button>
 </div>
 {% empty %}
 <div>
