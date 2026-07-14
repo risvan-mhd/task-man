@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="m-8 flex gap-2">
-	<input type="text" placeholder="Task" class="input flex-1">
-	<button class="btn btn-primary px-16">Add</button>
+<div class="m-8">
+	<div class="flex gap-2">
+		<input type="text" placeholder="Task" class="input flex-1">
+		<button class="btn btn-primary px-16">Add</button>
+	</div>
+
+	<div class="mt-8 flex flex-col gap-2 select-none">
+		{% for task in tasks %}
+		<div class="bg-base-200 hover:bg-base-300 flex">
+			<label class="label cursor-pointer flex-grow p-4">
+				<input type="checkbox" class="checkbox" {% if task.completed %}checked{% endif %}>
+				{{ task.name }}
+			</label>
+			<button class="m-4 btn btn-error">Delete</button>
+		</div>
+		{% empty %}
+		<div>
+			<p class="text-center opacity-60">No Tasks Yet</p>
+		</div>
+		{% endfor %}
+	</div>
 </div>
-<p class="text-center opacity-60">No Tasks Yet</p>
 
 {% endblock content %}
